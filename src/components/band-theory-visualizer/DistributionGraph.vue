@@ -100,7 +100,7 @@ export default defineComponent({
 
           // Color if it is not in forbidden band and if it is not too small
           if ((energy > semiConductor.conductionBandEnergyEV && fermiDistributionStepProbability > 1e-10)) { //  || (energy < semiConductor.valenceBandOffsetEV && fermiDistributionStepProbability > 1e-9)
-            pointBackgroundColors.push('rgba(0, 0, 0, 0.5)')
+            pointBackgroundColors.push(semiConductor.color + '99')
           } else {
             pointBackgroundColors.push('rgba(0, 0, 0, 0.0)')
           }
@@ -199,10 +199,11 @@ export default defineComponent({
           label: '△ ' + semiConductor.name + ' ' + this.$t('Conduction Band') + ' ' + this.$t('Density of States'),
           data: conductionBandData,
           borderColor: semiConductor.color,
-          borderDash: [5, 5],
+          borderDash: [5, 30],
           fill: true,
           yAxisID: 'densityOfStates',
-          pointStyle: 'triangle'
+          pointStyle: 'triangle',
+          pointRadius: 4
         })
 
         // Add the valence band
@@ -243,10 +244,11 @@ export default defineComponent({
           label: '△ ' + semiConductor.name + ' ' + this.$t('Valence Band') + ' ' + this.$t('Density of States'),
           data: valenceBandData,
           borderColor: semiConductor.color,
-          borderDash: [8, 8],
+          borderDash: [5, 30],
           fill: true,
           yAxisID: 'densityOfStates',
-          pointStyle: 'triangle'
+          pointStyle: 'triangle',
+          pointRadius: 4
         })
       }
 
@@ -281,9 +283,14 @@ export default defineComponent({
               type: 'linear',
               title: {
                 display: true,
-                text: `${this.$t('Density of Energy States')}`
+                text: `△ ${this.$t('Density of Energy States')}`
               },
-              axis: 'y'
+              axis: 'y',
+              position: 'right',
+              grid: {
+                display: true,
+                drawOnChartArea: false
+              }
               // max: maxX,
               // min: minX
             }
@@ -307,6 +314,7 @@ export default defineComponent({
                 },
                 mode: 'xy'
               }
+
             },
             tooltip: {
               callbacks: {
@@ -324,6 +332,16 @@ export default defineComponent({
                   }
                   return label
                 }
+              }
+            },
+            legend: {
+              position: 'top',
+              labels: {
+                // This more specific font property overrides the global property
+                font: {
+                  size: 12
+                },
+                boxWidth: 22
               }
             }
           }

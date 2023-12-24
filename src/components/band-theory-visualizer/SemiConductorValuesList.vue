@@ -1,10 +1,10 @@
 <template>
   <div
-    class="row q-pa-xs"
+    class="flex q-pa-xs justify-between"
     style="font-size: 14px;"
   >
     <div
-      class="col-12 col-lg-4 value-grid"
+      class="value-grid col-grow"
     >
       <div
         v-for="(value, index) in values"
@@ -20,7 +20,9 @@
         />
       </div>
     </div>
-    <div class="col-12 col-lg-4 text-center">
+    <div
+      class="text-center col-grow"
+    >
       <div>
         Valance Band States Density
       </div>
@@ -34,7 +36,7 @@
         :formula="conductionBandStatesDensityFormulaTex"
       />
     </div>
-    <div class="col-12 col-lg-4 text-center">
+    <div class="text-center col-grow">
       <div class="">
         Intrinsic Carrier Concentration
       </div>

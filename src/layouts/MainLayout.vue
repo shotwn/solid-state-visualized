@@ -50,7 +50,6 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
       bordered
     >
       <q-list>
@@ -88,6 +87,7 @@ export default defineComponent({
 
   setup () {
     const leftDrawerOpen = ref(false)
+    leftDrawerOpen.value = false
 
     const i18nLocale = useI18n({ useScope: 'global' })
 

@@ -45,60 +45,136 @@
       </template>
     </q-table>
 
-    <div>
-      <q-expansion-item
-        class="q-ma-xs shadow-3 border-radius text-h6"
-        :label="$t('Calculations')"
+    <div class="row">
+      <div
+        :class="{
+          'col-6': calculationsHalfCol,
+          'col-12': !calculationsHalfCol
+        }"
       >
-        <q-tabs
-          v-model="valueListTabViewUUID"
-          class="q-ml-md"
-          dense
-          align="left"
+        <q-expansion-item
+          class="q-ma-xs shadow-3 border-radius text-h6"
+          :label="$t('Calculations')"
         >
-          <q-tab
-            v-for="semiConductor in semiConductors"
-            :key="semiConductor.uuid"
-            :label="semiConductor.name"
-            :name="semiConductor.uuid"
-            :style="{ color: semiConductor.color }"
-          />
-        </q-tabs>
-        <q-tab-panels
-          v-if="valueListTabViewUUID"
-          v-model="valueListTabViewUUID"
-          class="text-body1"
-        >
-          <q-tab-panel
-            v-for="semiConductor in semiConductors"
-            :key="semiConductor.uuid"
-            :name="semiConductor.uuid"
+          <template #header="">
+            <div class="q-item__section flex q-item__section--main justify-center">
+              <div class="text-h6">
+                {{ $t('Calculations') }}
+              </div>
+              <q-space />
+              <q-btn
+                :color="calculationsHalfCol ? 'primary' : 'grey'"
+                flat
+                icon="mdi-arrow-collapse-horizontal"
+                @click.stop="calculationsHalfCol = !calculationsHalfCol"
+              />
+            </div>
+          </template>
+          <q-tabs
+            v-model="valueListTabViewUUID"
+            class="q-ml-md"
+            dense
+            align="left"
           >
-            <semi-conductor-values-list
-              :semi-conductor="semiConductor"
+            <q-tab
+              v-for="semiConductor in semiConductors"
+              :key="semiConductor.uuid"
+              :label="semiConductor.name"
+              :name="semiConductor.uuid"
+              :style="{ color: semiConductor.color }"
             />
-          </q-tab-panel>
-        </q-tab-panels>
-      </q-expansion-item>
-      <q-expansion-item
-        :label="$t('Band Graph')"
-        class="q-ma-xs shadow-3 border-radius text-h6"
+          </q-tabs>
+          <q-tab-panels
+            v-if="valueListTabViewUUID"
+            v-model="valueListTabViewUUID"
+            class="text-body1"
+          >
+            <q-tab-panel
+              v-for="semiConductor in semiConductors"
+              :key="semiConductor.uuid"
+              :name="semiConductor.uuid"
+            >
+              <semi-conductor-values-list
+                :semi-conductor="semiConductor"
+              />
+            </q-tab-panel>
+          </q-tab-panels>
+        </q-expansion-item>
+      </div>
+      <div
+        :class="{
+          'col-6': bandGraphHalfCol,
+          'col-12': !bandGraphHalfCol
+        }"
       >
-        <distribution-chart
-          style="max-height: 40vh;"
-          :semi-conductors="semiConductors"
-        />
-      </q-expansion-item>
-
-      <q-expansion-item
-        :label="$t('Temperature - Carrier Graph')"
-        class="q-ma-xs shadow-3 border-radius text-h6"
+        <q-expansion-item
+          :label="$t('Band Graph')"
+          class="q-ma-xs shadow-3 border-radius text-h6 col-12"
+        >
+          <template #header="{expanded}">
+            <div class="q-item__section flex q-item__section--main justify-center">
+              <div class="text-h6">
+                {{ $t('Band Graph') }}
+              </div>
+              <q-space />
+              <q-btn
+                :color="bandGraphHalfCol ? 'primary' : 'grey'"
+                flat
+                icon="mdi-arrow-collapse-horizontal"
+                @click.stop="bandGraphHalfCol = !bandGraphHalfCol"
+              />
+              <q-btn
+                v-if="expanded"
+                :color="bandGraphFullscreen ? 'primary' : 'grey'"
+                flat
+                icon="expand"
+                @click.stop="bandGraphFullscreen = !bandGraphFullscreen"
+              />
+            </div>
+          </template>
+          <distribution-chart
+            :style="bandGraphStyle"
+            :semi-conductors="semiConductors"
+          />
+        </q-expansion-item>
+      </div>
+      <div
+        :class="{
+          'col-6': temperatureGraphHalfCol,
+          'col-12': !temperatureGraphHalfCol
+        }"
       >
-        <temperature-graph
-          style="max-height: 40vh;"
-          :semi-conductors="semiConductors"
-        />
-      </q-expansion-item>
+        <q-expansion-item
+          :label="$t('Temperature - Carrier Graph')"
+          class="q-ma-xs shadow-3 border-radius text-h6 col-12"
+        >
+          <template #header="{expanded}">
+            <div class="q-item__section flex q-item__section--main justify-center">
+              <div class="text-h6">
+                {{ $t('Temperature - Carrier Graph') }}
+              </div>
+              <q-space />
+              <q-btn
+                :color="temperatureGraphHalfCol ? 'primary' : 'grey'"
+                flat
+                icon="mdi-arrow-collapse-horizontal"
+                @click.stop="temperatureGraphHalfCol = !temperatureGraphHalfCol"
+              />
+              <q-btn
+                v-if="expanded"
+                :color="temperatureGraphFullscreen ? 'primary' : 'grey'"
+                flat
+                icon="expand"
+                @click.stop="temperatureGraphFullscreen = !temperatureGraphFullscreen"
+              />
+            </div>
+          </template>
+          <temperature-graph
+            :style="temperatureGraphStyle"
+            :semi-conductors="semiConductors"
+          />
+        </q-expansion-item>
+      </div>
     </div>
   </q-page>
 </template>
@@ -132,7 +208,12 @@ export default defineComponent({
   data () {
     return {
       semiConductors: [],
-      valueListTabViewUUID: 0
+      valueListTabViewUUID: 0,
+      bandGraphFullscreen: false,
+      temperatureGraphFullscreen: false,
+      bandGraphHalfCol: false,
+      temperatureGraphHalfCol: false,
+      calculationsHalfCol: false
     }
   },
   computed: {
@@ -216,6 +297,30 @@ export default defineComponent({
           sortable: false
         }
       ]
+    },
+    bandGraphStyle () {
+      if (this.bandGraphFullscreen) {
+        return {
+          maxHeight: 'calc(95vh - 170px)',
+          height: 'calc(95vh - 170px)'
+        }
+      } else {
+        return {
+          maxHeight: '40vh'
+        }
+      }
+    },
+    temperatureGraphStyle () {
+      if (this.temperatureGraphFullscreen) {
+        return {
+          maxHeight: 'calc(95vh - 170px)',
+          height: 'calc(95vh - 170px)'
+        }
+      } else {
+        return {
+          maxHeight: '40vh'
+        }
+      }
     }
   },
   mounted () {

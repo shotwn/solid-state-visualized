@@ -37,5 +37,10 @@ export default {
   'Fermi Energy': 'Fermi Enerjisi',
   'Valence Band': 'Değerlik Bandı',
   'Density of States': 'Durum Yoğunluğu',
-  'Fermi Distribution': 'Fermi Dağılımı'
+  'Fermi Distribution': 'Fermi Dağılımı',
+  'Density of Energy States': 'Enerji Durum Yoğunluğu',
+  'Intrinsic Carrier Density': 'Katkısız Taşıyıcı Yoğunluğu',
+  'n-Type Carrier Concentration': 'n-Tipi Taşıyıcı Yoğunluğu',
+  'p-Type Carrier Concentration': 'p-Tipi Taşıyıcı Yoğunluğu',
+  'Selected Temperature': 'Seçilen Sıcaklık'
 }

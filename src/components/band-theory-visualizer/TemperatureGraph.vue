@@ -113,7 +113,7 @@ export default defineComponent({
         }
 
         datasets.push({
-          label: semiConductor.name + ' Intrinsic Carrier Concentration',
+          label: semiConductor.name + ' ' + this.$t('Intrinsic Carrier Density'),
           data,
           borderColor: semiConductor.color
         })
@@ -131,7 +131,7 @@ export default defineComponent({
         }
 
         datasets.push({
-          label: semiConductor.name + ' n-Type Carrier Concentration',
+          label: semiConductor.name + ' ' + this.$t('n-Type Carrier Concentration'),
           data: nTypeData,
           borderColor: semiConductor.color,
           borderDash: [5, 5],
@@ -151,7 +151,7 @@ export default defineComponent({
         }
 
         datasets.push({
-          label: semiConductor.name + ' p-Type Carrier Concentration',
+          label: semiConductor.name + ' ' + this.$t('p-Type Carrier Concentration'),
           data: pTypeData,
           borderColor: semiConductor.color,
           backgroundColor: 'blue',
@@ -160,7 +160,7 @@ export default defineComponent({
 
         // Mark selected temperature
         datasets.push({
-          label: semiConductor.name + ' Selected Temperature',
+          label: semiConductor.name + ' ' + this.$t('Selected Temperature'),
           data: [
             {
               x: semiConductor.temperature,
@@ -189,17 +189,17 @@ export default defineComponent({
               position: 'bottom',
               title: {
                 display: true,
-                text: 'Temperature (K)'
+                text: this.$t('Temperature') + ' (K)'
               }
             },
             y: {
               type: 'logarithmic',
               title: {
                 display: true,
-                text: 'Intrinsic Carrier Concentration (m⁻³) (log scale)'
+                text: `${this.$t('Intrinsic Carrier Density')} (m⁻³) (log)`
               },
               ticks: {
-                callback: (val) => (val.toPrecision(4))
+                callback: (val) => (val.toPrecision(1))
               }
             }
           }
