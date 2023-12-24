@@ -110,6 +110,7 @@
         <q-expansion-item
           :label="$t('Band Graph')"
           class="q-ma-xs shadow-3 border-radius text-h6 col-12"
+          default-opened
         >
           <template #header="{expanded}">
             <div class="q-item__section flex q-item__section--main justify-center">
