@@ -90,7 +90,7 @@ const contacts = [
   },
   {
     label: 'github',
-    href: 'https://github.com/shotwn',
+    href: 'https://github.com/shotwn/solid-state-visualized',
     icon: 'mdi-github'
   },
   {

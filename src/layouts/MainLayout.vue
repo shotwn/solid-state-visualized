@@ -108,7 +108,7 @@ export default defineComponent({
       },
       {
         title: 'Github',
-        href: 'https://github.com/shotwn/',
+        href: 'https://github.com/shotwn/solid-state-visualized',
         icon: 'mdi-github',
         target: '_blank',
         caption: i18nLocale.t('Github repository of the project')
