@@ -10,7 +10,7 @@
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
     "build": "quasar build",
-    "deploy": "push-dir --dir=dist/spa --remote=main --branch=pages"
+    "deploy": "push-dir --dir=dist/spa --remote=origin --branch=pages"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.9",
