@@ -1,8 +1,11 @@
 # Solid State: Visualized
-Solid State Physics Visualized
 
 ## About
 This is a project to visualize the concepts of solid state physics. It is built using [Quasar](https://quasar.dev/), a Vue.js framework.
+
+You can find the deployed version [here](https://ssv.anilhaksever.com).
+
+Important equations are in a monolith javascript file, [here](composibles/solid-state-calculations.js).
 
 
 ## Install the dependencies

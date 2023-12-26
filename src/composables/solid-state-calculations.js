@@ -236,7 +236,7 @@ export function fermiLevel (
 export function electronConcentration (addedAcceptorDensity, addedDonorDensity, intrinsicCarrierConcentration) {
   // https://inst.eecs.berkeley.edu/~ee105/sp08/lectures/lecture2_6.pdf
   if (addedAcceptorDensity > addedDonorDensity) {
-    // Assume p-type | obtain p from n_i^2 / (N_A - N_D)
+    // Assume p-type | obtain n from n_i^2 / (N_A - N_D)
     // n was added as an acceptor to stabilize low doping levels
     return intrinsicCarrierConcentration ** 2 / (addedAcceptorDensity - addedDonorDensity + intrinsicCarrierConcentration)
   } else {

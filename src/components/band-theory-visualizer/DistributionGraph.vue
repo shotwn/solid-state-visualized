@@ -129,7 +129,7 @@ export default defineComponent({
         for (let i = 0; i < pointSizesValance.length; i++) {
           pointSizesValance[i] = pointSizesValance[i] / minPointSizeValance + 1 // min will be two
 
-          // Make the max 10
+          // Make the max 40
           if (pointSizesValance[i] > 40) {
             pointSizesValance[i] = 1
           }

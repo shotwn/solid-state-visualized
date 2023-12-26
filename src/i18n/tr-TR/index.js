@@ -4,7 +4,7 @@
 export default {
   failed: 'Action failed',
   success: 'Action was successful',
-  'Band Gap': 'Band Genişliği',
+  'Band Gap': 'Yasak Band Genişliği',
   boltzmannConstant: 'Boltzmann Sabiti',
   temperature: 'Sıcaklık',
   fermiDistribution: 'Fermi Dağılımı',
