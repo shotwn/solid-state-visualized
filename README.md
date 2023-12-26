@@ -5,7 +5,7 @@ This is a project to visualize the concepts of solid state physics. It is built 
 
 You can find the deployed version [here](https://ssv.anilhaksever.com).
 
-Important equations are in a monolith javascript file, [here](composables/solid-state-calculations.js).
+Important equations are in a monolith javascript file, [here](src/composables/solid-state-calculations.js).
 
 
 ## Install the dependencies
